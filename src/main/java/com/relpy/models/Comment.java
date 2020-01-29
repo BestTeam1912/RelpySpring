@@ -4,49 +4,55 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Comment")
+@Table(name = "p2_comment")
 public class Comment {
 	@Id
-	@GeneratedValue
-	private int id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
 	private String text;
-	@OneToMany()
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "replyingTo")
 	private List<Comment> replies;
 	@ManyToOne
+	@JoinColumn(name = "comment_thread_ref", nullable = true)
 	private Thread thread;
-	private Date dateCreated;
-	private ActiveUser user;
 	@ManyToOne
+	@JoinColumn(name = "comment_user_ref", nullable = true)
+	private User user;
+	@ManyToOne
+	@JoinColumn(name = "replyTo", nullable = true)
 	private Comment replyingTo;
-
+	private Date dateCreated;
+	
 	public Comment() {
-		// TODO Auto-generated constructor stub
 	}
 
-	public Comment(int id, String text, List<Comment> replies, Thread thread, Date dateCreated, ActiveUser user,
-			Comment replyingTo) {
+	public Comment(long id, String text, List<Comment> replies, Thread thread, User user, Comment replyingTo,
+			Date dateCreated) {
 		super();
 		this.id = id;
 		this.text = text;
 		this.replies = replies;
 		this.thread = thread;
-		this.dateCreated = dateCreated;
 		this.user = user;
 		this.replyingTo = replyingTo;
+		this.dateCreated = dateCreated;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -74,19 +80,11 @@ public class Comment {
 		this.thread = thread;
 	}
 
-	public Date getDateCreated() {
-		return dateCreated;
-	}
-
-	public void setDateCreated(Date dateCreated) {
-		this.dateCreated = dateCreated;
-	}
-
-	public ActiveUser getUser() {
+	public User getUser() {
 		return user;
 	}
 
-	public void setUser(ActiveUser user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 
@@ -98,9 +96,11 @@ public class Comment {
 		this.replyingTo = replyingTo;
 	}
 
-	@Override
-	public String toString() {
-		return "Comment [id=" + id + ", text=" + text + ", replies=" + replies + ", thread=" + thread + ", dateCreated="
-				+ dateCreated + ", user=" + user + ", replyingTo=" + replyingTo + "]";
+	public Date getDateCreated() {
+		return dateCreated;
+	}
+
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
 	}
 }
