@@ -3,10 +3,12 @@ package com.relpy.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import com.relpy.models.Community;
 import com.relpy.daos.CommunityDAO;
+import com.relpy.models.Community;
 
+@Service
 public class CommunityServiceImpl implements CommunityService {
 	@Autowired
 	private CommunityDAO comDao;
