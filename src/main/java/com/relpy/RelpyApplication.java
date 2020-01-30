@@ -45,8 +45,8 @@ public class RelpyApplication {
 
 			for (int i = 0; i < 5; i++) {
 				thread = new Thread();
-				thread.setTitle("This is a thread title" + uniqueNumber);
-				thread.setDescription("This is a thread description" + uniqueNumber);
+				thread.setTitle("This is a thread title" + i);
+				thread.setDescription("This is a thread description" + i);
 				thread.setDateCreated(new Date());
 				com.getThreads().add(thread);
 				threadService.addThread(thread);
@@ -64,8 +64,8 @@ public class RelpyApplication {
 			
 			for (int i = 0; i < 2; i++) {
 				thread = new Thread();
-				thread.setTitle("This is a thread title" + uniqueNumber);
-				thread.setDescription("This is a thread description" + uniqueNumber);
+				thread.setTitle("This is a thread title" + i);
+				thread.setDescription("This is a thread description" + i);
 				thread.setDateCreated(new Date());
 				com.getThreads().add(thread);
 				threadService.addThread(thread);
@@ -83,8 +83,8 @@ public class RelpyApplication {
 			
 			for (int i = 0; i < 2; i++) {
 				thread = new Thread();
-				thread.setTitle("This is a thread title" + uniqueNumber);
-				thread.setDescription("This is a thread description" + uniqueNumber);
+				thread.setTitle("This is a thread title" + i);
+				thread.setDescription("This is a thread description" + i);
 				thread.setDateCreated(new Date());
 				com.getThreads().add(thread);
 				threadService.addThread(thread);
