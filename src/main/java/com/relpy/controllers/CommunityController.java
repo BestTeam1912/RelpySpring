@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.relpy.models.Community;
+import com.relpy.models.Thread;
 import com.relpy.services.CommunityService;
 
 
