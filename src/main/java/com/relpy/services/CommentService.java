@@ -9,5 +9,7 @@ public interface CommentService {
 
 	public Comment addComment(Comment comment);
 
-	public Comment findCommentById(int id);
+	public Comment getCommentById(int id);
+
+	public Comment updateComment(Comment comment);
 }

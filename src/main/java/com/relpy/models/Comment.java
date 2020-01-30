@@ -18,7 +18,7 @@ import javax.persistence.Table;
 public class Comment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private int id;
 	private String text;
 	@OneToMany(fetch = FetchType.LAZY)//, mappedBy = "replyingTo")
 	private List<Comment> replies;
@@ -41,7 +41,7 @@ public class Comment {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

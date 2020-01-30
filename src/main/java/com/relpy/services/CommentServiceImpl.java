@@ -21,12 +21,17 @@ public class CommentServiceImpl implements CommentService {
 	}
 	
 	@Override
-	public Comment findCommentById(int id) {
-		return commentDao.getOne(id);
+	public Comment getCommentById(int id) {
+		return commentDao.findById(id).get();
 	}
 
 	@Override
 	public Comment addComment(Comment comment) {
+		return commentDao.save(comment);
+	}
+
+	@Override
+	public Comment updateComment(Comment comment) {
 		return commentDao.save(comment);
 	}
 
