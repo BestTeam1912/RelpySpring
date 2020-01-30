@@ -9,4 +9,5 @@ public interface ThreadService {
 	Thread addThread(Thread thread);
 	void deleteThread(Thread thread);
 	List<Comment> getCommentsByThread(Thread thread);
+	Thread updateThread(Thread thread);
 }

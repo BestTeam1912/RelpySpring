@@ -1,5 +1,6 @@
 package com.relpy.models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class Community {
 	private long id;
 	private String title;
 	private String description;
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "community")
+	@OneToMany(fetch = FetchType.EAGER)//, mappedBy = "community")
 	private List<Thread> threads;
 	private Date dateCreated;
 

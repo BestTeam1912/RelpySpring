@@ -23,7 +23,7 @@ public class CommunityServiceImpl implements CommunityService {
 	@Override
 	public Community getCommunityByTitle(String title) {
 		// TODO Auto-generated method stub
-		return comDao.getCommunityByTitle(title);
+		return comDao.findByTitle(title);
 	}
 
 	@Override
@@ -34,17 +34,20 @@ public class CommunityServiceImpl implements CommunityService {
 	
 	@Override
 	public Community updateCommunity(Community com) {
-		// TODO Auto-generated method stub
+		//forloop -> threadservice.update(thread)
 		return comDao.save(com);
 	}
 
 	@Override
-	public void deleteCommunityById(int id) {
+	public void deleteCommunityById(Long id) {
 		// TODO Auto-generated method stub
 		comDao.deleteById(id);
 
 	}
 
+	public void flush() {
+		comDao.flush();
+	}
 
 
 }
