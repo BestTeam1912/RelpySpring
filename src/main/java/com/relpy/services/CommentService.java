@@ -8,4 +8,6 @@ public interface CommentService {
 	public List<Comment> findComments();
 
 	public Comment addComment(Comment comment);
+
+	public Comment findCommentById(int id);
 }

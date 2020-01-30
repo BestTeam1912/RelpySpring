@@ -2,6 +2,8 @@ package com.relpy.controllers;
 
 import java.util.List;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +31,11 @@ public class CommentController {
 	@GetMapping("/all")
 	public List<Comment> getAllComments(){
 		return commentService.findComments();
+	}
+	
+	@GetMapping("/{id}")
+	public Comment getCommentById(@PathParam("id") int id){
+		return commentService.findCommentById(id);
 	}
 	
 	@PostMapping("/add")

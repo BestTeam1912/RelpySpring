@@ -1,6 +1,7 @@
 package com.relpy.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,11 @@ public class CommentServiceImpl implements CommentService {
 	@Override
 	public List<Comment> findComments() {
 		return commentDao.findAll();
+	}
+	
+	@Override
+	public Comment findCommentById(int id) {
+		return commentDao.getOne(id);
 	}
 
 	@Override
