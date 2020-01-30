@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.relpy.daos.ThreadDAO;
 import com.relpy.models.Comment;
+import com.relpy.models.Community;
 import com.relpy.models.Thread;
 
 @Service
@@ -23,6 +24,12 @@ public class ThreadServiceImpl implements ThreadService {
 	@Override
 	public void deleteThread(Thread thread) {
 		threadRepository.delete(thread);
+	}
+	
+	@Override
+	public Thread updateThread(Thread thread) {
+		// TODO Auto-generated method stub
+		return threadRepository.save(thread);
 	}
 
 	@Override

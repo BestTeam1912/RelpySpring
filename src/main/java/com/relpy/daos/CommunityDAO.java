@@ -7,8 +7,9 @@ import com.relpy.models.Community;
 
 
 @Repository
-public interface CommunityDAO extends JpaRepository<Community, Integer> {
+public interface CommunityDAO extends JpaRepository<Community, Long> {
 
-	Community getCommunityByTitle(String title);
+	Community findByTitle(String title);
+//	Long deleteByTitle(String title);
 
 }

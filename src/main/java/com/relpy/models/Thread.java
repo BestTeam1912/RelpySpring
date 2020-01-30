@@ -1,5 +1,6 @@
 package com.relpy.models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -21,10 +22,10 @@ public class Thread {
 	private long id;
 	private String title;
 	private String description;
-	@ManyToOne
-	@JoinColumn(name = "community_ref", nullable = true)
-	private Community community;
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "thread")
+//	@ManyToOne
+//	@JoinColumn(name = "community_ref", nullable = true)
+//	private Community community;
+	@OneToMany(fetch = FetchType.LAZY)//, mappedBy = "thread")
 	private List<Comment> commentList;
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "mythread")
 	private List<ActiveUser> activeUsers;
@@ -40,7 +41,7 @@ public class Thread {
 		this.id = id;
 		this.title = title;
 		this.description = description;
-		this.community = community;
+//		this.community = community;
 		this.commentList = commentList;
 		this.activeUsers = activeUsers;
 		this.dateCreated = dateCreated;
@@ -70,13 +71,13 @@ public class Thread {
 		this.description = description;
 	}
 
-	public Community getCommunity() {
-		return community;
-	}
-
-	public void setCommunity(Community community) {
-		this.community = community;
-	}
+//	public Community getCommunity() {
+//		return community;
+//	}
+//
+//	public void setCommunity(Community community) {
+//		this.community = community;
+//	}
 
 	public List<Comment> getCommentList() {
 		return commentList;
@@ -104,8 +105,8 @@ public class Thread {
 
 	@Override
 	public String toString() {
-		return "Thread [id=" + id + ", title=" + title + ", description=" + description + ", community=" + community
-				+ ", commentList=" + commentList + ", activeUsers=" + activeUsers + ", dateCreated=" + dateCreated
+		return "Thread [id=" + id + ", title=" + title + ", description=" + description + ", community=" + //(community == null ? "" : community.getTitle())
+				", commentList=" + commentList + ", activeUsers=" + activeUsers + ", dateCreated=" + dateCreated
 				+ "]";
 	}
 }

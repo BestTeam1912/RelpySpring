@@ -22,9 +22,9 @@ public class Comment {
 	private String text;
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "replyingTo")
 	private List<Comment> replies;
-	@ManyToOne
-	@JoinColumn(name = "comment_thread_ref", nullable = true)
-	private Thread thread;
+//	@ManyToOne
+//	@JoinColumn(name = "comment_thread_ref", nullable = true)
+//	private Thread thread;
 	@ManyToOne
 	@JoinColumn(name = "comment_user_ref", nullable = true)
 	private User user;
@@ -34,18 +34,7 @@ public class Comment {
 	private Date dateCreated;
 	
 	public Comment() {
-	}
-
-	public Comment(long id, String text, List<Comment> replies, Thread thread, User user, Comment replyingTo,
-			Date dateCreated) {
-		super();
-		this.id = id;
-		this.text = text;
-		this.replies = replies;
-		this.thread = thread;
-		this.user = user;
-		this.replyingTo = replyingTo;
-		this.dateCreated = dateCreated;
+		// TODO Auto-generated constructor stub
 	}
 
 	public long getId() {
@@ -72,14 +61,6 @@ public class Comment {
 		this.replies = replies;
 	}
 
-	public Thread getThread() {
-		return thread;
-	}
-
-	public void setThread(Thread thread) {
-		this.thread = thread;
-	}
-
 	public User getUser() {
 		return user;
 	}
@@ -103,4 +84,5 @@ public class Comment {
 	public void setDateCreated(Date dateCreated) {
 		this.dateCreated = dateCreated;
 	}
+	
 }
