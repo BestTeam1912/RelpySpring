@@ -8,4 +8,6 @@ import com.relpy.models.User;
 @Repository
 public interface UserDAO extends JpaRepository<User, Long>{
 	User getUserById(Long id);
+
+	User getUserByName(String userName);
 }

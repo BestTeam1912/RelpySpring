@@ -3,6 +3,7 @@ package com.relpy.models;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,6 +18,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	@Column(unique=true)
 	private String username;
 	private String password;
 	private UserType type;
@@ -25,7 +27,6 @@ public class User {
 	private Date dateCreated;
 
 	public User() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public User(long id, String username, String password, UserType type, List<ActiveUser> activeUsers,
