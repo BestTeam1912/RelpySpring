@@ -20,17 +20,17 @@ public class Comment {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String text;
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "replyingTo")
+	@OneToMany(fetch = FetchType.LAZY)//, mappedBy = "replyingTo")
 	private List<Comment> replies;
 //	@ManyToOne
 //	@JoinColumn(name = "comment_thread_ref", nullable = true)
 //	private Thread thread;
-	@ManyToOne
-	@JoinColumn(name = "comment_user_ref", nullable = true)
-	private User user;
-	@ManyToOne
-	@JoinColumn(name = "replyTo", nullable = true)
-	private Comment replyingTo;
+//	@ManyToOne
+//	@JoinColumn(name = "comment_user_ref", nullable = true)
+//	private User user;
+//	@ManyToOne
+//	@JoinColumn(name = "replyTo", nullable = true)
+//	private Comment replyingTo;
 	private Date dateCreated;
 	
 	public Comment() {
@@ -61,21 +61,21 @@ public class Comment {
 		this.replies = replies;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public Comment getReplyingTo() {
-		return replyingTo;
-	}
-
-	public void setReplyingTo(Comment replyingTo) {
-		this.replyingTo = replyingTo;
-	}
+//	public User getUser() {
+//		return user;
+//	}
+//
+//	public void setUser(User user) {
+//		this.user = user;
+//	}
+//
+//	public Comment getReplyingTo() {
+//		return replyingTo;
+//	}
+//
+//	public void setReplyingTo(Comment replyingTo) {
+//		this.replyingTo = replyingTo;
+//	}
 
 	public Date getDateCreated() {
 		return dateCreated;
