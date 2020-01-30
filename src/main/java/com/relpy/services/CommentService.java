@@ -5,5 +5,7 @@ import java.util.List;
 import com.relpy.models.Comment;
 
 public interface CommentService {
-	public List<Comment> findCommentsInThreadId(int id);
+	public List<Comment> findComments();
+
+	public Comment addComment(Comment comment);
 }
