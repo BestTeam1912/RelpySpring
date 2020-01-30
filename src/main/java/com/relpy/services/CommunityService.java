@@ -10,7 +10,10 @@ public interface CommunityService {
 	public Community getCommunityByTitle(String title);
 	public Community addCommunity(Community com);
 	public Community updateCommunity(Community com);
-	public void deleteCommunityById(int id);
+//	public void deleteCommunityByTitle(String title);
+//	public void deleteCommunityById(int id);
+	public void deleteCommunityById(Long id);
+	public void flush();
 
 //	public Community getAnimalById(int id);
 
