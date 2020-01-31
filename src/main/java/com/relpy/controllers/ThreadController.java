@@ -3,6 +3,7 @@ package com.relpy.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,7 @@ import com.relpy.services.ThreadService;
 
 @RestController
 @RequestMapping("/thread")
+@CrossOrigin("http://localhost:4200")
 public class ThreadController {
 	@Autowired
 	private ThreadService threadService;
@@ -50,6 +52,4 @@ public class ThreadController {
 	public void reduceUserCurrency(@RequestBody Transaction transaction) {
 		threadService.reduceUserCurrency(transaction.getThreadId(), transaction.getUserId(), transaction.getAmount());
 	}
-
-	
 }
