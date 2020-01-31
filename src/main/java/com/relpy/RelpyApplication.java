@@ -1,12 +1,8 @@
 package com.relpy;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
-
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import java.util.HashMap;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -15,8 +11,11 @@ import org.springframework.context.annotation.Bean;
 
 import com.relpy.models.Community;
 import com.relpy.models.Thread;
+import com.relpy.models.User;
+import com.relpy.models.UserType;
 import com.relpy.services.CommunityService;
 import com.relpy.services.ThreadService;
+import com.relpy.services.UserService;
 
 @SpringBootApplication
 public class RelpyApplication {
@@ -26,15 +25,17 @@ public class RelpyApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demoData(ThreadService threadService, CommunityService communityService) {
+	public CommandLineRunner demoData(ThreadService threadService, CommunityService communityService, UserService userService) {
 		return args -> {
 
+			
+			
 //			Community Mock Service
 
 			Community com;
-			Thread thread;
+			Thread thread = new Thread();
 			int uniqueNumber = 0;
-
+			
 			com = new Community();
 			com.setTitle("funny" + uniqueNumber);
 			com.setDescription("relpy/funny description haha" + uniqueNumber);
@@ -91,6 +92,24 @@ public class RelpyApplication {
 			}
 			communityService.addCommunity(com);
 			uniqueNumber++;
+			
+			
+			User user = new User();
+			user.setUsername("balde");
+			user.setPassword("123");
+			userService.registerUser(user);
+			thread = new Thread();
+			thread.setTitle("A new thread title, its different");
+			thread.setDescription("Some description");
+			thread.setMoneyMap(new HashMap<User, Integer>());
+			thread.getMoneyMap().put(user, 400);
+			threadService.addThread(thread);
+			
+			user = new User();
+			user.setUsername("jp");
+			user.setPassword("1234565");
+			userService.registerUser(user);
+			
 		};
 	}
 }

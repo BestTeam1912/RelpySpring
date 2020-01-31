@@ -1,18 +1,22 @@
 package com.relpy.models;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import com.relpy.models.User;
 
 @Entity
 @Table(name = "p2_thread")
@@ -27,23 +31,25 @@ public class Thread {
 //	private Community community;
 	@OneToMany(fetch = FetchType.LAZY)//, mappedBy = "thread")
 	private List<Comment> commentList;
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "mythread")
-	private List<ActiveUser> activeUsers;
+	
+	@ElementCollection(fetch = FetchType.LAZY)
+	@CollectionTable(name="user_money_mapping", 
+			joinColumns = {@JoinColumn(name="thread_id", referencedColumnName = "id")})
+	@MapKeyColumn(name = "user_id")
+	@Column(name = "currency")
+	private Map<User, Integer> moneyMap;
 	private Date dateCreated;
 	
-	public Thread() {
-		// TODO Auto-generated constructor stub
-	}
+	public Thread() {}
 
-	public Thread(long id, String title, String description, Community community, List<Comment> commentList,
-			List<ActiveUser> activeUsers, Date dateCreated) {
+	public Thread(long id, String title, String description, List<Comment> commentList, Map<User, Integer> moneyMap,
+			Date dateCreated) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.description = description;
-//		this.community = community;
 		this.commentList = commentList;
-		this.activeUsers = activeUsers;
+		this.moneyMap = moneyMap;
 		this.dateCreated = dateCreated;
 	}
 
@@ -71,14 +77,6 @@ public class Thread {
 		this.description = description;
 	}
 
-//	public Community getCommunity() {
-//		return community;
-//	}
-//
-//	public void setCommunity(Community community) {
-//		this.community = community;
-//	}
-
 	public List<Comment> getCommentList() {
 		return commentList;
 	}
@@ -87,12 +85,12 @@ public class Thread {
 		this.commentList = commentList;
 	}
 
-	public List<ActiveUser> getActiveUsers() {
-		return activeUsers;
+	public Map<User, Integer> getMoneyMap() {
+		return moneyMap;
 	}
 
-	public void setActiveUsers(List<ActiveUser> activeUsers) {
-		this.activeUsers = activeUsers;
+	public void setMoneyMap(Map<User, Integer> moneyMap) {
+		this.moneyMap = moneyMap;
 	}
 
 	public Date getDateCreated() {
@@ -101,12 +99,5 @@ public class Thread {
 
 	public void setDateCreated(Date dateCreated) {
 		this.dateCreated = dateCreated;
-	}
-
-	@Override
-	public String toString() {
-		return "Thread [id=" + id + ", title=" + title + ", description=" + description + ", community=" + //(community == null ? "" : community.getTitle())
-				", commentList=" + commentList + ", activeUsers=" + activeUsers + ", dateCreated=" + dateCreated
-				+ "]";
 	}
 }
