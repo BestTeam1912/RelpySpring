@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.relpy.daos.ThreadDAO;
+import com.relpy.exceptions.InsufficientFundsException;
 import com.relpy.models.Comment;
 import com.relpy.models.Thread;
 import com.relpy.models.User;
@@ -47,7 +48,13 @@ public class ThreadServiceImpl implements ThreadService {
 	public int getUserCurrency(long threadId, long userId) {
 		Thread thread = threadRepository.findById(threadId).get();
 		Map<Long, Integer> moneyMap = thread.getMoneyMap();
-		moneyMap.put(userId, defaultMoney);
+		System.out.println(moneyMap);
+		System.out.println(moneyMap);
+		System.out.println(moneyMap);
+		System.out.println(moneyMap);
+		System.out.println(moneyMap);
+		System.out.println(moneyMap);
+		System.out.println(moneyMap);
 		return moneyMap.get(userId);
 	}
 
@@ -72,7 +79,18 @@ public class ThreadServiceImpl implements ThreadService {
 	}
 
 	@Override
-	public void reduceUserCurrency(long threadId, User user, int amount) {
-		getThreadById(threadId);
+	public void reduceUserCurrency(long threadId, long userId, int amount) {
+		Thread thread = getThreadById(threadId);
+		Map<Long, Integer> moneyMap = thread.getMoneyMap();	
+		System.out.println(moneyMap);
+		if(moneyMap.get(userId) != null) {
+			int currentMoney = moneyMap.get(userId);
+			if(currentMoney - amount < 0) {
+				throw new InsufficientFundsException("User Did Not Have Enough Currency To Comment.");
+			}else {
+				moneyMap.put(userId, currentMoney - amount);
+				updateThread(thread);
+			}
+		}
 	}
 }

@@ -15,5 +15,5 @@ public interface ThreadService {
 	Thread updateThread(Thread thread);
 	int getUserCurrency(long threadId, long userId);
 	void addUserToThread(long threadId, User user);
-	void reduceUserCurrency(long threadId, User user, int amount);
+	void reduceUserCurrency(long threadId, long userId, int amount);
 }
