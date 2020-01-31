@@ -1,5 +1,6 @@
 package com.relpy.models;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -16,11 +17,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import com.relpy.models.User;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "p2_thread")
-public class Thread {
+public class Thread{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -37,12 +40,14 @@ public class Thread {
 			joinColumns = {@JoinColumn(name="thread_id", referencedColumnName = "id")})
 	@MapKeyColumn(name = "user_id")
 	@Column(name = "currency")
-	private Map<User, Integer> moneyMap;
+	private Map<Long, Integer> moneyMap;
 	private Date dateCreated;
 	
-	public Thread() {}
+	public Thread() {
+		// TODO Auto-generated constructor stub
+	}
 
-	public Thread(long id, String title, String description, List<Comment> commentList, Map<User, Integer> moneyMap,
+	public Thread(long id, String title, String description, List<Comment> commentList, Map<Long, Integer> moneyMap,
 			Date dateCreated) {
 		super();
 		this.id = id;
@@ -85,11 +90,11 @@ public class Thread {
 		this.commentList = commentList;
 	}
 
-	public Map<User, Integer> getMoneyMap() {
+	public Map<Long, Integer> getMoneyMap() {
 		return moneyMap;
 	}
 
-	public void setMoneyMap(Map<User, Integer> moneyMap) {
+	public void setMoneyMap(Map<Long, Integer> moneyMap) {
 		this.moneyMap = moneyMap;
 	}
 
@@ -100,4 +105,8 @@ public class Thread {
 	public void setDateCreated(Date dateCreated) {
 		this.dateCreated = dateCreated;
 	}
+	
+	
+	
+	
 }
