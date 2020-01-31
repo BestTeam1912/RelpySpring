@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.relpy.models.Thread;
 import com.relpy.models.User;
 import com.relpy.services.ThreadService;
@@ -20,7 +19,7 @@ public class ThreadController {
 	@Autowired
 	private ThreadService threadService;
 	
-	@PostMapping("/add")
+	@PostMapping(path="/add")
 	public Thread addThread(@RequestBody Thread thread) {
 		return threadService.addThread(thread);
 	}
@@ -41,7 +40,7 @@ public class ThreadController {
 		return threadService.getUserCurrency(threadId, userId);
 	}
 	
-	@PostMapping("/add/user/{threadId}")
+	@PostMapping(path="/add/user/{threadId}")
 	public void addUserToThread(@PathVariable long threadId, @RequestBody User user) {
 		threadService.addUserToThread(threadId, user);
 	}

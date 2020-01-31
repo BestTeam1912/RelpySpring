@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,11 +20,18 @@ import com.relpy.services.UserService;
 
 @SpringBootApplication
 public class RelpyApplication {
-
+	
+	@Value("${defaultMoney}")
+	private int defaultMoney;
+	
+	
+	
 	public static void main(String[] args) {
 		SpringApplication.run(RelpyApplication.class, args);
 	}
 
+	
+	
 	@Bean
 	public CommandLineRunner demoData(ThreadService threadService, CommunityService communityService, UserService userService) {
 		return args -> {
@@ -101,8 +109,8 @@ public class RelpyApplication {
 			thread = new Thread();
 			thread.setTitle("A new thread title, its different");
 			thread.setDescription("Some description");
-			thread.setMoneyMap(new HashMap<User, Integer>());
-			thread.getMoneyMap().put(user, 400);
+			thread.setMoneyMap(new HashMap<Long, Integer>());
+			thread.getMoneyMap().put(user.getId(), defaultMoney);
 			threadService.addThread(thread);
 			
 			user = new User();

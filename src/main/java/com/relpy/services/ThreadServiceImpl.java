@@ -46,10 +46,9 @@ public class ThreadServiceImpl implements ThreadService {
 	@Override
 	public int getUserCurrency(long threadId, long userId) {
 		Thread thread = threadRepository.findById(threadId).get();
-		Map<User, Integer> moneyMap = thread.getMoneyMap();
-		User proxyUser = new User();
-		proxyUser.setId(userId);		
-		return moneyMap.get(proxyUser);
+		Map<Long, Integer> moneyMap = thread.getMoneyMap();
+		moneyMap.put(userId, defaultMoney);
+		return moneyMap.get(userId);
 	}
 
 	@Override
@@ -65,24 +64,15 @@ public class ThreadServiceImpl implements ThreadService {
 	@Override
 	public void addUserToThread(long threadId, User user) {
 		Thread thread = threadRepository.findById(threadId).get();
-		Map<User, Integer> moneyMap = thread.getMoneyMap();
-		System.out.println(moneyMap);
-		System.out.println(moneyMap);
-		System.out.println(moneyMap);
-		System.out.println(moneyMap);
-		System.out.println(moneyMap);
-		System.out.println(moneyMap);
-		System.out.println(moneyMap);
-		System.out.println(moneyMap);
-		System.out.println(moneyMap);
-		if(moneyMap.get(user) == null) {
-			moneyMap.put(user, defaultMoney);
+		Map<Long, Integer> moneyMap = thread.getMoneyMap();
+		if(moneyMap.get(user.getId()) == null) {
+			moneyMap.put(user.getId(), defaultMoney);
 			updateThread(thread);
 		}
 	}
 
 	@Override
 	public void reduceUserCurrency(long threadId, User user, int amount) {
-		
+		getThreadById(threadId);
 	}
 }
