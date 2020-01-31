@@ -117,7 +117,6 @@ public class RelpyApplication {
 			user.setUsername("jp");
 			user.setPassword("1234565");
 			userService.registerUser(user);
-			
 		};
 	}
 }
