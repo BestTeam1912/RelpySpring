@@ -12,4 +12,6 @@ public interface CommentService {
 	public Comment getCommentById(int id);
 
 	public Comment updateComment(Comment comment);
+
+	public void deleteCommentById(int id);
 }

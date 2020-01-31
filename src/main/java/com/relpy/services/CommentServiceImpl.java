@@ -34,5 +34,10 @@ public class CommentServiceImpl implements CommentService {
 	public Comment updateComment(Comment comment) {
 		return commentDao.save(comment);
 	}
+	
+	@Override
+	public void deleteCommentById(int id) {
+		commentDao.deleteById(id);
+	}
 
 }
