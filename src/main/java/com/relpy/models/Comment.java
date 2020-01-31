@@ -35,7 +35,7 @@ public class Comment {
 		// TODO Auto-generated constructor stub
 	}
 
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 

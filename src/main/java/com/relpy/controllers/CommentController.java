@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.relpy.bos.CommentBO;
+import com.relpy.bos.CommentBoImpl;
 import com.relpy.models.Comment;
 import com.relpy.services.CommentService;
 
@@ -22,6 +24,8 @@ import com.relpy.services.CommentService;
 public class CommentController {
 	@Autowired
 	private CommentService commentService;
+	
+	private CommentBO commentBo = new CommentBoImpl();
 	
 //	@GetMapping("/thread/{id}")
 //	public List<Comment> getCommentsByThreadId(@PathVariable("id") int id){
@@ -44,8 +48,15 @@ public class CommentController {
 	}
 	
 	@PostMapping("/add")
-	public Comment addComment(@RequestBody Comment comment) {
-		return commentService.addComment(comment);
+	public Comment addComment(@RequestBody Comment comment) throws Exception {
+		if(commentBo.isValidToUpdate(comment)) {
+				throw new Exception("uh oh: this comment is already around");
+		}
+		if(commentBo.isValidText(comment)) {
+			return commentService.addComment(comment);
+		}else {
+			throw new Exception("Something about the text makes it invalid for posting");
+		}
 	}
 	
 	@PutMapping("/update")
