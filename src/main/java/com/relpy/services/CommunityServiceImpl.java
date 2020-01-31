@@ -7,6 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.relpy.daos.CommunityDAO;
 import com.relpy.models.Community;
+import com.relpy.models.Thread;
+import java.util.List;
+
+
 
 @Service
 public class CommunityServiceImpl implements CommunityService {
