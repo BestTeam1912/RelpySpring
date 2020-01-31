@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -22,22 +23,10 @@ public class User {
 	private String username;
 	private String password;
 	private UserType type;
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	private List<ActiveUser> activeUsers;
 	private Date dateCreated;
 
 	public User() {
-	}
-
-	public User(long id, String username, String password, UserType type, List<ActiveUser> activeUsers,
-			Date dateCreated) {
-		super();
-		this.id = id;
-		this.username = username;
-		this.password = password;
-		this.type = type;
-		this.activeUsers = activeUsers;
-		this.dateCreated = dateCreated;
+		// TODO Auto-generated constructor stub
 	}
 
 	public long getId() {
@@ -72,14 +61,6 @@ public class User {
 		this.type = type;
 	}
 
-	public List<ActiveUser> getActiveUsers() {
-		return activeUsers;
-	}
-
-	public void setActiveUsers(List<ActiveUser> activeUsers) {
-		this.activeUsers = activeUsers;
-	}
-
 	public Date getDateCreated() {
 		return dateCreated;
 	}
@@ -87,10 +68,34 @@ public class User {
 	public void setDateCreated(Date dateCreated) {
 		this.dateCreated = dateCreated;
 	}
+	
+	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", type=" + type
-				+ ", activeUsers=" + activeUsers + ", dateCreated=" + dateCreated + "]";
+				+ ", dateCreated=" + dateCreated + "]";
 	}
 }
