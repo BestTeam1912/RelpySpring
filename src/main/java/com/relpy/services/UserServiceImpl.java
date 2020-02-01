@@ -16,43 +16,48 @@ public class UserServiceImpl implements UserService {
 	private UserDAO userRepository;
 	
 	@Override
-	public boolean login(User user) {
+	public User login(User user) {
 		User compUser = userRepository.findByUsername(user.getUsername());
 		if(compUser != null) {
 			if(user.getPassword().equals(compUser.getPassword())) {
-				return true;
+				user.setUsername("login confirmed");
+				return user;
 			} else {
-				return false;
+				user.setUsername("no match");
+				return user;
 			}
 		}else {
-			return false;
+			user.setUsername("user not found");
+			return user;
 		}
 		
 	}
 	
 	@Override
-	public boolean registerAdmin(User user) {
+	public User registerAdmin(User user) {
 		User compUser = userRepository.findByUsername(user.getUsername());
 		if(compUser != null) {
-			return false;
+			user.setUsername("taken");
+			return user;
 		}else {
 			user.setDateCreated(new Date());
 			user.setType(UserType.Admin);
 			userRepository.save(user);
-			return true;
+			return user;
 		}
 	}
 
 	@Override
-	public boolean registerUser(User user) {
+	public User registerUser(User user) {
 		User compUser = userRepository.findByUsername(user.getUsername());
 		if(compUser != null) {
-			return false;
+			user.setUsername("taken");
+			return user;
 		}else {
 			user.setDateCreated(new Date());
 			user.setType(UserType.User);
 			userRepository.save(user);
-			return true;
+			return user;
 		}
 		
 	}
