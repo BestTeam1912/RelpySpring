@@ -18,8 +18,6 @@ import com.relpy.services.ThreadService;
 import com.relpy.services.UserService;
 
 @SpringBootApplication
-//@EnableAspectJAutoProxy
-//@ComponentScan("com.relpy.aspects.*")
 public class RelpyApplication {
 	
 	@Value("${defaultMoney}")
@@ -31,12 +29,9 @@ public class RelpyApplication {
 		SpringApplication.run(RelpyApplication.class, args);
 	}
 
-	
 	@Bean
 	public CommandLineRunner demoData(ThreadService threadService, CommunityService communityService, UserService userService) {
-		return args -> {			
-			
-			
+		return args -> {					
 			User user = new User();
 			user.setUsername("balde");
 			user.setPassword("123");
