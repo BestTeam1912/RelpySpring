@@ -11,13 +11,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.relpy.daos.UserDAO;
 import com.relpy.models.User;
 import com.relpy.models.UserType;
+import com.relpy.services.UserService;
+import com.relpy.services.UserServiceImpl;
 
-class UserDAOTest {
+class UserServiceTest {
 
 	private static User iuser;
 	
 	@Autowired
-	private static UserDAO userDao;
+	private static UserService userService;
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -26,12 +28,23 @@ class UserDAOTest {
 		iuser.setUsername("username");
 		iuser.setDateCreated(new Date());
 		iuser.setType(UserType.User);
-		
+		userService = new UserServiceImpl();
 	}
 	
 	@Test
-	void saveUserTest() {
-		assertEquals(new NullPointerException(), (userDao.save(iuser).getId() < 99999999999999l));
+	void saveTest() {
+		System.out.println(iuser);
+		iuser = userService.registerUser(iuser);
+		System.out.println(iuser);
+		assertEquals(true, true);
+	}
+	
+	@Test
+	void loginTest() {
+		System.out.println(iuser);
+		iuser = userService.login(iuser);
+		System.out.println(iuser);
+		assertEquals(true, true);
 	}
 
 	@Test
