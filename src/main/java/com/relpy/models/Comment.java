@@ -18,7 +18,7 @@ import javax.validation.constraints.NotNull;
 public class Comment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private long id;
 	@NotNull(message = "This is a bad type")
 	@NotEmpty(message = "Please add some Cahrez to the message before posting")
 	private String text;
@@ -43,7 +43,7 @@ public class Comment {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
