@@ -23,6 +23,11 @@ public class UserController {
 	public boolean registerUser(@RequestBody User user) {
 		return service.registerUser(user);
 	}
+	
+	@PostMapping("/register")
+	public boolean registerAdmin(@RequestBody User user) {
+		return service.registerAdmin(user);
+	}
 
 	
 	@PostMapping("/login")
