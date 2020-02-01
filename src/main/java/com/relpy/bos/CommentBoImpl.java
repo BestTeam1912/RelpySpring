@@ -23,9 +23,9 @@ public class CommentBoImpl implements CommentBO {
 
 	@Override
 	public boolean validateToUpdate(Comment comment) {
-		if(comment.getId() < 10) {
-			return false;
-		}
+//		if(comment.getId() < 10) {
+//			return false;
+//		}
 		return true;
 	}
 

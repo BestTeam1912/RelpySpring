@@ -49,14 +49,14 @@ public class CommentController {
 	
 	@PostMapping("/add")
 	public Comment addComment(@RequestBody Comment comment) throws Exception {
-		if(commentBo.validateToUpdate(comment)) {
-				throw new Exception("uh oh: this comment is already around");
-		}
-		if(commentBo.validateText(comment)) {
-			return commentService.addComment(comment);
-		}else {
-			throw new Exception("Something about the text makes it invalid for posting");
-		}
+//		if(commentBo.validateToUpdate(comment)) {
+//				throw new Exception("uh oh: this comment is already around");
+//		}
+//		if(commentBo.validateText(comment)) {
+		return commentService.addComment(comment);
+//		}else {
+//			throw new Exception("Something about the text makes it invalid for posting");
+//		}
 	}
 	
 	@PutMapping("/update")

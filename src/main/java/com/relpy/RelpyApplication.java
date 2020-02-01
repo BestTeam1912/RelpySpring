@@ -34,84 +34,13 @@ public class RelpyApplication {
 	
 	@Bean
 	public CommandLineRunner demoData(ThreadService threadService, CommunityService communityService, UserService userService) {
-		return args -> {
-
-			
-			
-//			Community Mock Service
-
-//			Community com;
-//			Thread thread = new Thread();
-//			int uniqueNumber = 0;
-//			
-//			com = new Community();
-//			com.setTitle("funny" + uniqueNumber);
-//			com.setDescription("relpy/funny description haha" + uniqueNumber);
-//			com.setDateCreated(new Date());
-//			com.setThreads(new ArrayList<Thread>());
-
-//			Thread Testing
-//
-//			for (int i = 0; i < 5; i++) {
-//				thread = new Thread();
-//				thread.setTitle("This is a thread title" + i);
-//				thread.setDescription("This is a thread description" + i);
-//				thread.setDateCreated(new Date());
-//				com.getThreads().add(thread);
-//				threadService.addThread(thread);
-//			}
-//			communityService.addCommunity(com);
-//			uniqueNumber++;
-			
-//			com = new Community();
-//			com.setTitle("funny" + uniqueNumber);
-//			com.setDescription("relpy/funny description haha" + uniqueNumber);
-//			com.setDateCreated(new Date());
-//			com.setThreads(new ArrayList<Thread>());
-			
-//			Thread Testing
-			
-//			for (int i = 0; i < 2; i++) {
-//				thread = new Thread();
-//				thread.setTitle("This is a thread title" + i);
-//				thread.setDescription("This is a thread description" + i);
-//				thread.setDateCreated(new Date());
-//				com.getThreads().add(thread);
-//				threadService.addThread(thread);
-//			}
-//			communityService.addCommunity(com);
-//			uniqueNumber++;
-			
-//			com = new Community();
-//			com.setTitle("funny" + uniqueNumber);
-//			com.setDescription("relpy/funny description haha" + uniqueNumber);
-//			com.setDateCreated(new Date());
-//			com.setThreads(new ArrayList<Thread>());
-			
-//			Thread Testing
-			
-//			for (int i = 0; i < 2; i++) {
-//				thread = new Thread();
-//				thread.setTitle("This is a thread title" + i);
-//				thread.setDescription("This is a thread description" + i);
-//				thread.setDateCreated(new Date());
-//				com.getThreads().add(thread);
-//				threadService.addThread(thread);
-//			}
-//			communityService.addCommunity(com);
-//			uniqueNumber++;
+		return args -> {			
 			
 			
 			User user = new User();
 			user.setUsername("balde");
 			user.setPassword("123");
 			userService.registerUser(user);
-//			Thread thread = new Thread();
-//			thread.setTitle("A new thread title, its different");
-//			thread.setDescription("Some description");
-//			thread.setMoneyMap(new HashMap<Long, Integer>());
-//			thread.getMoneyMap().put(user.getId(), defaultMoney);
-//			threadService.addThread(thread);
 			
 			user = new User();
 			user.setUsername("jp");
@@ -119,22 +48,4 @@ public class RelpyApplication {
 			userService.registerUser(user);
 		};
 	}
-/////////////////////////////////////////////////////////////////
-////https://stackoverflow.com/questions/51811372/why-aop-does-not-work-in-my-spring-boot-application
-/////////////////////////////////////////////////////////////////
-//	@Bean ThreadService threadService() {
-//		return new ThreadServiceImpl();
-//	}
-//	
-//	@Bean UserService userService() {
-//		return new UserServiceImpl();
-//	}
-//	
-//	@Bean CommunityService communityService() {
-//		return new CommunityServiceImpl();
-//	}
-//	
-//	@Bean ProxyCommentBO proxyCommentBO() {  
-//		return new ProxyCommentBO();
-//	}
 }
