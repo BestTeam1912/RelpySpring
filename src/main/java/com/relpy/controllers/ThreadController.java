@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.relpy.models.Comment;
+import com.relpy.models.Community;
 import com.relpy.models.Thread;
 import com.relpy.models.Transaction;
 import com.relpy.models.User;
 import com.relpy.services.CommentService;
+import com.relpy.services.CommunityService;
 import com.relpy.services.ThreadService;
 
 @RestController
@@ -28,6 +31,9 @@ public class ThreadController {
 	
 	@Autowired
 	private CommentService commentService;
+	
+	@Autowired
+	private CommunityService communityService;
 	
 	@PostMapping(path="/add")
 	public Thread addThread(@RequestBody Thread thread) {
@@ -71,6 +77,13 @@ public class ThreadController {
 	@PutMapping("/reduce/currency")
 	public void reduceUserCurrency(@RequestBody Transaction transaction) {
 		threadService.reduceUserCurrency(transaction.getThreadId(), transaction.getUserId(), transaction.getAmount());
+	}
+	
+	@DeleteMapping("/delete/{threadid}/{comid}")
+	public void deleteThreadById(@PathVariable("threadid") Long threadid, @PathVariable("comid") Long comid){
+		Community com=communityService.getCommunityByID(comid);
+		com.getThreads().remove(threadService.getThreadById(threadid));
+		threadService.deleteThreadById(threadid);
 	}
 	
 }

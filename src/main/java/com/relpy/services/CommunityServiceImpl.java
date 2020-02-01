@@ -52,7 +52,6 @@ public class CommunityServiceImpl implements CommunityService {
 	public void deleteCommunityById(Long id) {
 		// TODO Auto-generated method stub
 		comDao.deleteById(id);
-
 	}
 
 	public void flush() {
