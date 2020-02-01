@@ -20,18 +20,18 @@ public class UserController {
 	private UserService service;
 	
 	@PostMapping("/register")
-	public boolean registerUser(@RequestBody User user) {
+	public User registerUser(@RequestBody User user) {
 		return service.registerUser(user);
 	}
 	
 	@PostMapping("/register/admin")
-	public boolean registerAdmin(@RequestBody User user) {
+	public User registerAdmin(@RequestBody User user) {
 		return service.registerAdmin(user);
 	}
 
 	
 	@PostMapping("/login")
-	public boolean login(@RequestBody User user) {
+	public User login(@RequestBody User user) {
 		return service.login(user);
 	}
 	
