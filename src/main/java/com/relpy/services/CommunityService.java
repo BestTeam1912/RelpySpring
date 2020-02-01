@@ -15,5 +15,6 @@ public interface CommunityService {
 //	public void deleteCommunityByTitle(String title);
 	public void deleteCommunityById(Long id);
 	public void flush();
+	Community getCommunityByID(long id);
 
 }

@@ -12,13 +12,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "p2_comment")
 public class Comment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private long id;
+	@NotNull(message = "This is a bad type")
+	@NotEmpty(message = "Please add some Cahrez to the message before posting")
 	private String text;
 	@OneToMany(fetch = FetchType.LAZY)//, mappedBy = "replyingTo")
 	private List<Comment> replies;
@@ -35,7 +39,7 @@ public class Comment {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

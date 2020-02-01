@@ -29,6 +29,12 @@ public class CommunityServiceImpl implements CommunityService {
 		// TODO Auto-generated method stub
 		return comDao.findByTitle(title);
 	}
+	
+	@Override
+	public Community getCommunityByID(long id) {
+		// TODO Auto-generated method stub
+		return comDao.findById(id).get();
+	}
 
 	@Override
 	public Community addCommunity(Community com) {
