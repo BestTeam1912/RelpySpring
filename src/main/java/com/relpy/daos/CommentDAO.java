@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import com.relpy.models.Comment;
 
 @Repository
-public interface CommentDAO extends JpaRepository<Comment, Integer> {
+public interface CommentDAO extends JpaRepository<Comment, Long> {
 }

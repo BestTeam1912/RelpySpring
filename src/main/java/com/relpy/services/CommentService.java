@@ -9,9 +9,9 @@ public interface CommentService {
 
 	public Comment addComment(Comment comment);
 
-	public Comment getCommentById(int id);
+	public Comment getCommentById(long id);
 
 	public Comment updateComment(Comment comment);
 
-	public void deleteCommentById(int id);
+	public void deleteCommentById(long id);
 }
