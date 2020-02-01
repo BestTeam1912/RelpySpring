@@ -1,7 +1,5 @@
 package com.relpy.bos;
 
-import org.springframework.beans.factory.annotation.Value;
-
 import com.relpy.models.Comment;
 
 public class CommentBoImpl implements CommentBO {
