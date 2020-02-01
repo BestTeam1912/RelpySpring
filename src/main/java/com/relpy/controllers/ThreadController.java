@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.relpy.models.Comment;
@@ -40,6 +41,14 @@ public class ThreadController {
 		thread.getCommentList().add(comment);
 		commentService.addComment(comment);
 		threadService.updateThread(thread);
+	}
+	
+	@PostMapping("/reply/{commentId}/")
+	public void replyToComment(@PathVariable long commentId, @RequestBody Comment reply) {
+		Comment comment = commentService.getCommentById(commentId);
+		commentService.addComment(reply);
+		comment.getReplies().add(reply);
+		commentService.updateComment(comment);
 	}
 	
 	@GetMapping("/get")
