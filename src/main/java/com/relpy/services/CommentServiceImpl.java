@@ -20,7 +20,7 @@ public class CommentServiceImpl implements CommentService {
 	}
 	
 	@Override
-	public Comment getCommentById(int id) {
+	public Comment getCommentById(long id) {
 		return commentDao.findById(id).get();
 	}
 
@@ -35,7 +35,7 @@ public class CommentServiceImpl implements CommentService {
 	}
 	
 	@Override
-	public void deleteCommentById(int id) {
+	public void deleteCommentById(long id) {
 		commentDao.deleteById(id);
 	}
 
