@@ -29,6 +29,19 @@ public class UserServiceImpl implements UserService {
 		}
 		
 	}
+	
+	@Override
+	public boolean registerAdmin(User user) {
+		User compUser = userRepository.findByUsername(user.getUsername());
+		if(compUser != null) {
+			return false;
+		}else {
+			user.setDateCreated(new Date());
+			user.setType(UserType.Admin);
+			userRepository.save(user);
+			return true;
+		}
+	}
 
 	@Override
 	public boolean registerUser(User user) {
@@ -53,5 +66,7 @@ public class UserServiceImpl implements UserService {
 	public User getUserByName(String userName) {
 		return userRepository.findByUsername(userName);
 	}
+
+
 
 }
