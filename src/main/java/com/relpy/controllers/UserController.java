@@ -24,7 +24,7 @@ public class UserController {
 		return service.registerUser(user);
 	}
 	
-	@PostMapping("/registerAdmin")
+	@PostMapping("/register/admin")
 	public boolean registerAdmin(@RequestBody User user) {
 		return service.registerAdmin(user);
 	}
