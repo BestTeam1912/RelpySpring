@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.relpy.bos.CommentBO;
+import com.relpy.bos.CommentBoImpl;
 import com.relpy.daos.CommentDAO;
 import com.relpy.models.Comment;
 
@@ -13,6 +15,8 @@ public class CommentServiceImpl implements CommentService {
 
 	@Autowired
 	private CommentDAO commentDao;
+	
+	private CommentBO commentBo = new CommentBoImpl();
 	
 	@Override
 	public List<Comment> findComments() {
@@ -25,8 +29,16 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
-	public Comment addComment(Comment comment) {
-		return commentDao.save(comment);
+	public Comment addComment(Comment comment) throws Exception {
+		if(commentBo.validateToUpdate(comment)) {
+			throw new Exception("uh oh: this comment is already around");
+		}
+		if(commentBo.validateText(comment)) {
+			return commentDao.save(comment);
+		}else {
+			throw new Exception("Something about the text makes it invalid for posting");
+		}
+		
 	}
 
 	@Override
