@@ -11,9 +11,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.relpy.models.Comment;
 import com.relpy.models.Thread;
 import com.relpy.models.Transaction;
 import com.relpy.models.User;
+import com.relpy.services.CommentService;
 import com.relpy.services.ThreadService;
 
 @RestController
@@ -23,9 +26,20 @@ public class ThreadController {
 	@Autowired
 	private ThreadService threadService;
 	
+	@Autowired
+	private CommentService commentService;
+	
 	@PostMapping(path="/add")
 	public Thread addThread(@RequestBody Thread thread) {
 		return threadService.addThread(thread);
+	}
+	
+	@PostMapping("/add/comment/{threadId}")
+	public void addComment(@RequestBody Comment comment, @PathVariable long threadId) {
+		Thread thread = threadService.getThreadById(threadId);
+		thread.getCommentList().add(comment);
+		commentService.addComment(comment);
+		threadService.updateThread(thread);
 	}
 	
 	@GetMapping("/get")
@@ -37,6 +51,12 @@ public class ThreadController {
 	public Thread getThreadById(@PathVariable long id) {
 		return threadService.getThreadById(id);
 	}	
+	
+	@GetMapping("/get/comments/{threadId}")
+	public List<Comment> getThreadComments(@PathVariable long threadId){
+		Thread thread = threadService.getThreadById(threadId);
+		return thread.getCommentList();
+	}
 	
 	@GetMapping("/get/currency/{threadId}/{userId}")
 	public int getUserCurrency(@PathVariable long threadId, @PathVariable long userId ) {
@@ -52,4 +72,5 @@ public class ThreadController {
 	public void reduceUserCurrency(@RequestBody Transaction transaction) {
 		threadService.reduceUserCurrency(transaction.getThreadId(), transaction.getUserId(), transaction.getAmount());
 	}
+	
 }

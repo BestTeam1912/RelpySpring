@@ -48,13 +48,6 @@ public class ThreadServiceImpl implements ThreadService {
 	public int getUserCurrency(long threadId, long userId) {
 		Thread thread = threadRepository.findById(threadId).get();
 		Map<Long, Integer> moneyMap = thread.getMoneyMap();
-		System.out.println(moneyMap);
-		System.out.println(moneyMap);
-		System.out.println(moneyMap);
-		System.out.println(moneyMap);
-		System.out.println(moneyMap);
-		System.out.println(moneyMap);
-		System.out.println(moneyMap);
 		return moneyMap.get(userId);
 	}
 
