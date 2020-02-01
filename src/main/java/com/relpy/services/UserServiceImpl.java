@@ -20,15 +20,12 @@ public class UserServiceImpl implements UserService {
 		User compUser = userRepository.findByUsername(user.getUsername());
 		if(compUser != null) {
 			if(user.getPassword().equals(compUser.getPassword())) {
-				user.setUsername("login confirmed");
-				return user;
+				return compUser;
 			} else {
-				user.setUsername("no match");
-				return user;
+				return null;
 			}
 		}else {
-			user.setUsername("user not found");
-			return user;
+			return null;
 		}
 		
 	}
