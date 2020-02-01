@@ -7,7 +7,7 @@ import com.relpy.models.Comment;
 public interface CommentService {
 	public List<Comment> findComments();
 
-	public Comment addComment(Comment comment) throws Exception;
+	public Comment addComment(Comment comment);
 
 	public Comment getCommentById(long id);
 

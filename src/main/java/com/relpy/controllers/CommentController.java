@@ -48,7 +48,7 @@ public class CommentController {
 	}
 	
 	@PostMapping("/add")
-	public Comment addComment(@RequestBody Comment comment) throws Exception {
+	public Comment addComment(@RequestBody Comment comment){
 		return commentService.addComment(comment);
 	}
 	
