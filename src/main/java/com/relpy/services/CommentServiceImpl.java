@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.relpy.bos.CommentBO;
+import com.relpy.bos.CommentBoImpl;
 import com.relpy.daos.CommentDAO;
 import com.relpy.models.Comment;
 
@@ -25,8 +27,8 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
-	public Comment addComment(Comment comment) {
-		return commentDao.save(comment);
+	public Comment addComment(Comment comment) throws Exception {
+		return commentDao.save(comment);	
 	}
 
 	@Override

@@ -9,13 +9,13 @@ import org.springframework.context.annotation.Bean;
 
 @Aspect
 public class ProxyCommentBO {
-	@Pointcut("execution(* com.relpy.bos.CommentBoImpl.validate*(..))")
-	public void CommentBoImpl() {}
+	@Pointcut("execution(* com.relpy.CommentServiceImpl.add*(..))")
+	public void CommentService() {}
 	
 	//@Pointcut("execution(* com.relpy.bos.CommentBoImpl.enough*(..))")
 	//public void CommentBO() {}
 	
-	@Before("CommentBoImpl()")
+	@Before("CommentService()")
 	public void beforeAdvice(JoinPoint jp) {
 		System.out.println("Before execution of "+jp.getSignature());
 		System.out.println("Before execution of "+jp.getSignature());
