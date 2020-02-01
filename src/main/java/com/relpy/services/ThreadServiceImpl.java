@@ -30,8 +30,9 @@ public class ThreadServiceImpl implements ThreadService {
 	}
 
 	@Override
-	public void deleteThread(Thread thread) {
-		threadRepository.delete(thread);
+	public void deleteThreadById(Long id) {
+		// TODO Auto-generated method stub
+		threadRepository.deleteById(id);
 	}
 	
 	@Override
