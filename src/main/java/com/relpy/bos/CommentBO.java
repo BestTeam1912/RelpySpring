@@ -3,9 +3,9 @@ package com.relpy.bos;
 import com.relpy.models.Comment;
 
 public interface CommentBO {
-	public boolean isValidText(Comment comment) throws Exception;
+	public boolean validateText(Comment comment) throws Exception;
 	
-	public boolean isValidToUpdate(Comment comment);
+	public boolean validateToUpdate(Comment comment);
 	
-	public boolean enoughCharactersForComment(Comment comment, int cahrez);
+	public boolean validateEnoughCharactersForComment(Comment comment, int cahrez);
 }

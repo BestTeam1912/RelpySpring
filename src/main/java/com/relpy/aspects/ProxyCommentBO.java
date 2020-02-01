@@ -8,29 +8,53 @@ import org.aspectj.lang.annotation.Pointcut;
 
 @Aspect
 public class ProxyCommentBO {
-	@Pointcut("execution(* com.relpy.bo.Comment.isValid*(..))")
-	public void CommentBO() {}
+	@Pointcut("execution(* com.relpy.bos.CommentBoImpl.validate*(..))")
+	public void CommentBoImpl() {}
 	
-	@Pointcut("execution(* com.relpy.bo.Comment.enough*(..))")
-	public void CommentBO2() {}
+	//@Pointcut("execution(* com.relpy.bos.CommentBoImpl.enough*(..))")
+	//public void CommentBO() {}
 	
-	@Before("CommentBO()")
+	@Before("CommentBoImpl()")
 	public void beforeAdvice(JoinPoint jp) {
 		System.out.println("Before execution of "+jp.getSignature());
-	}
-	
-	@After("CommentBO()")
-	public void afterAdvice(JoinPoint jp) {
-		System.out.println("After execution of "+jp.getSignature());
-	}
-	
-	@Before("CommentBO2()")
-	public void beforeAdvice2(JoinPoint jp) {
+		System.out.println("Before execution of "+jp.getSignature());
+		System.out.println("Before execution of "+jp.getSignature());
+		System.out.println("Before execution of "+jp.getSignature());
+		System.out.println("Before execution of "+jp.getSignature());
+		System.out.println("Before execution of "+jp.getSignature());
+		System.out.println("Before execution of "+jp.getSignature());
+		System.out.println("Before execution of "+jp.getSignature());
+		System.out.println("Before execution of "+jp.getSignature());
+		System.out.println("Before execution of "+jp.getSignature());
+		System.out.println("Before execution of "+jp.getSignature());
+		System.out.println("Before execution of "+jp.getSignature());
+		System.out.println("Before execution of "+jp.getSignature());
+		System.out.println("Before execution of "+jp.getSignature());
 		System.out.println("Before execution of "+jp.getSignature());
 	}
 	
-	@After("CommentBO2()")
-	public void afterAdvice2(JoinPoint jp) {
+	@After("CommentBoImpl()")
+	public void afterAdvice(JoinPoint jp) {
+		System.out.println("After execution of "+jp.getSignature());
+		System.out.println("After execution of "+jp.getSignature());
+		System.out.println("After execution of "+jp.getSignature());
+		System.out.println("After execution of "+jp.getSignature());
+		System.out.println("After execution of "+jp.getSignature());
+		System.out.println("After execution of "+jp.getSignature());
+		System.out.println("After execution of "+jp.getSignature());
+		System.out.println("After execution of "+jp.getSignature());
+		System.out.println("After execution of "+jp.getSignature());
+		System.out.println("After execution of "+jp.getSignature());
 		System.out.println("After execution of "+jp.getSignature());
 	}
+	
+//	@Before("CommentBO()")
+//	public void beforeAdvice2(JoinPoint jp) {
+//		System.out.println("Before execution of "+jp.getSignature());
+//	}
+//	
+//	@After("CommentBO()")
+//	public void afterAdvice2(JoinPoint jp) {
+//		System.out.println("After execution of "+jp.getSignature());
+//	}
 }

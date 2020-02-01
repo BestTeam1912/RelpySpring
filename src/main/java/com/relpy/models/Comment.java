@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "p2_comment")
@@ -17,6 +19,8 @@ public class Comment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	@NotNull(message = "This is a bad type")
+	@NotEmpty(message = "Please add some Cahrez to the message before posting")
 	private String text;
 	@OneToMany(fetch = FetchType.LAZY)//, mappedBy = "replyingTo")
 	private List<Comment> replies;

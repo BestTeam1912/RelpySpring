@@ -10,7 +10,7 @@ public class CommentBoImpl implements CommentBO {
 	private int cahrez = 255;
 	
 	@Override
-	public boolean isValidText(Comment comment) throws Exception {
+	public boolean validateText(Comment comment) throws Exception {
 		if(comment.getText().length() == 0) {
 			return false;
 		}
@@ -22,7 +22,7 @@ public class CommentBoImpl implements CommentBO {
 	}
 
 	@Override
-	public boolean isValidToUpdate(Comment comment) {
+	public boolean validateToUpdate(Comment comment) {
 		if(comment.getId() < 10) {
 			return false;
 		}
@@ -30,7 +30,7 @@ public class CommentBoImpl implements CommentBO {
 	}
 
 	@Override
-	public boolean enoughCharactersForComment(Comment comment, int cahrez) {
+	public boolean validateEnoughCharactersForComment(Comment comment, int cahrez) {
 		if(comment.getText().length() < cahrez && comment.getText().length() < this.cahrez) {
 			return true;
 		}
