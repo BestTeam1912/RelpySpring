@@ -7,8 +7,7 @@ import java.util.Date;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import com.relpy.daos.UserDAO;
+	
 import com.relpy.models.User;
 import com.relpy.models.UserType;
 import com.relpy.services.UserService;
@@ -33,17 +32,17 @@ class UserServiceTest {
 	
 	@Test
 	void saveTest() {
-		System.out.println(iuser);
+		System.out.println("Before save: "+iuser);
 		iuser = userService.registerUser(iuser);
-		System.out.println(iuser);
+		System.out.println("After save: "+iuser);
 		assertEquals(true, true);
 	}
 	
 	@Test
 	void loginTest() {
-		System.out.println(iuser);
+		System.out.println("Before login: "+iuser);
 		iuser = userService.login(iuser);
-		System.out.println(iuser);
+		System.out.println("After login"+iuser);
 		assertEquals(true, true);
 	}
 
