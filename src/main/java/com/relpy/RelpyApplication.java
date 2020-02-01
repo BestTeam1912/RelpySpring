@@ -13,12 +13,13 @@ import org.springframework.context.annotation.Bean;
 import com.relpy.models.Community;
 import com.relpy.models.Thread;
 import com.relpy.models.User;
-import com.relpy.models.UserType;
 import com.relpy.services.CommunityService;
 import com.relpy.services.ThreadService;
 import com.relpy.services.UserService;
 
 @SpringBootApplication
+//@EnableAspectJAutoProxy
+//@ComponentScan("com.relpy.aspects.*")
 public class RelpyApplication {
 	
 	@Value("${defaultMoney}")
@@ -30,7 +31,6 @@ public class RelpyApplication {
 		SpringApplication.run(RelpyApplication.class, args);
 	}
 
-	
 	
 	@Bean
 	public CommandLineRunner demoData(ThreadService threadService, CommunityService communityService, UserService userService) {
@@ -119,4 +119,21 @@ public class RelpyApplication {
 			userService.registerUser(user);
 		};
 	}
+	
+
+//	@Bean ThreadService threadService() {
+//		return new ThreadServiceImpl();
+//	}
+//	
+//	@Bean UserService userService() {
+//		return new UserServiceImpl();
+//	}
+//	
+//	@Bean CommunityService communityService() {
+//		return new CommunityServiceImpl();
+//	}
+//	
+//	@Bean ProxyCommentBO proxyCommentBO() {  
+//		return new ProxyCommentBO();
+//	}
 }

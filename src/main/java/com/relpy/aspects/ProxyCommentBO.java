@@ -5,6 +5,7 @@ import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.context.annotation.Bean;
 
 @Aspect
 public class ProxyCommentBO {
@@ -57,4 +58,8 @@ public class ProxyCommentBO {
 //	public void afterAdvice2(JoinPoint jp) {
 //		System.out.println("After execution of "+jp.getSignature());
 //	}
+	
+	
+
 }
+
