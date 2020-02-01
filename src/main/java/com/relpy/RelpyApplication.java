@@ -119,8 +119,9 @@ public class RelpyApplication {
 			userService.registerUser(user);
 		};
 	}
-	
-
+/////////////////////////////////////////////////////////////////
+////https://stackoverflow.com/questions/51811372/why-aop-does-not-work-in-my-spring-boot-application
+/////////////////////////////////////////////////////////////////
 //	@Bean ThreadService threadService() {
 //		return new ThreadServiceImpl();
 //	}
