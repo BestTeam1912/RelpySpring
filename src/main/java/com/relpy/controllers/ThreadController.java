@@ -43,10 +43,15 @@ public class ThreadController {
 		threadService.updateThread(thread);
 	}
 	
-	@PostMapping("/reply/{commentId}/")
-	public void replyToComment(@PathVariable long commentId, @RequestBody Comment reply) {
+	@PostMapping("/reply/{threadId}/{commentId}")
+	public void replyToComment(@PathVariable long commentId, @PathVariable long threadId ,@RequestBody Comment reply) {
 		Comment comment = commentService.getCommentById(commentId);
 		commentService.addComment(reply);
+		
+		Thread thread = threadService.getThreadById(threadId);
+		thread.getCommentList().add(reply);
+		threadService.updateThread(thread);
+		
 		comment.getReplies().add(reply);
 		commentService.updateComment(comment);
 	}
