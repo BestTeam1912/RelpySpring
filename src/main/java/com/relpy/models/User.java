@@ -26,6 +26,15 @@ public class User implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
+	public User(long id, String username, String password, UserType type, Date dateCreated) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.type = type;
+		this.dateCreated = dateCreated;
+	}
+
 	public long getId() {
 		return id;
 	}
