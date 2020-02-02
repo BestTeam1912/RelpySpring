@@ -5,8 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.relpy.bos.CommentBO;
-import com.relpy.bos.CommentBoImpl;
 import com.relpy.daos.CommentDAO;
 import com.relpy.models.Comment;
 
