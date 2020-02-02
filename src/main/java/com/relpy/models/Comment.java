@@ -35,6 +35,17 @@ public class Comment {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Comment(long id,
+			@NotNull(message = "This is a bad type") @NotEmpty(message = "Please add some Cahrez to the message before posting") String text,
+			List<Comment> replies, User user, Date dateCreated) {
+		super();
+		this.id = id;
+		this.text = text;
+		this.replies = replies;
+		this.user = user;
+		this.dateCreated = dateCreated;
+	}
+
 	public long getId() {
 		return id;
 	}
