@@ -31,7 +31,6 @@ public class UserController {
 	public User registerAdmin(@RequestBody User user) {
 		return service.registerAdmin(user);
 	}
-
 	
 	@PostMapping("/login")
 	public User login(@RequestBody User user, HttpSession session) {
