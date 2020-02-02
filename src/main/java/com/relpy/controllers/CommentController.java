@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.relpy.bos.CommentBO;
-import com.relpy.bos.CommentBoImpl;
 import com.relpy.models.Comment;
 import com.relpy.services.CommentService;
 
@@ -24,8 +22,6 @@ import com.relpy.services.CommentService;
 public class CommentController {
 	@Autowired
 	private CommentService commentService;
-	
-	private CommentBO commentBo = new CommentBoImpl();
 	
 //	@GetMapping("/thread/{id}")
 //	public List<Comment> getCommentsByThreadId(@PathVariable("id") int id){
