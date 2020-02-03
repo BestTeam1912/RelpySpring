@@ -1,6 +1,7 @@
 package com.relpy.services;
 
 import java.util.List;
+import java.util.Map;
 
 import com.relpy.models.Comment;
 import com.relpy.models.Thread;
@@ -13,7 +14,8 @@ public interface ThreadService {
 	List<Thread> getAllThreads();
 	Thread updateThread(Thread thread);
 	int getUserCurrency(long threadId, long userId);
-	void addUserToThread(long threadId, User user);
+	Map<Long, Integer> addUserToThread(long threadId, User user);
 	void reduceUserCurrency(long threadId, long userId, int amount);
 	void deleteThreadById(Long id);
+	void resetUserCurrency(long threadId, long userId);
 }
