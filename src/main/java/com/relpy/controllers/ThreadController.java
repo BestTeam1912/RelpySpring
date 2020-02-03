@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.relpy.exceptions.InvalidActionException;
 import com.relpy.models.Comment;
 import com.relpy.models.Community;
 import com.relpy.models.Thread;
@@ -59,13 +60,17 @@ public class ThreadController {
 	
 	@PostMapping("/reply/{threadId}/{commentId}")
 	public void replyToComment(@PathVariable long commentId, @PathVariable long threadId ,@RequestBody Comment reply) {
-		Comment comment = commentService.getCommentById(commentId);
-		commentService.addComment(reply);
-		
 		int replyLength = reply.getText().length();
 		User user = reply.getUser();
-		threadService.reduceUserCurrency(threadId, user.getId(), replyLength);
 		
+		Comment comment = commentService.getCommentById(commentId);
+		User originalCommentUser = comment.getUser();
+		if(originalCommentUser.getId() == user.getId()) {
+			throw new InvalidActionException("You cannot reply to yourself!!!");
+		}
+		threadService.reduceUserCurrency(threadId, user.getId(), replyLength);
+		commentService.addComment(reply);
+				
 		Thread thread = threadService.getThreadById(threadId);
 		thread.getCommentList().add(reply);
 		threadService.updateThread(thread);
@@ -74,7 +79,6 @@ public class ThreadController {
 		commentService.updateComment(comment);
 		
 		
-		User originalCommentUser = comment.getUser();
 		threadService.resetUserCurrency(threadId, originalCommentUser.getId());
 	}
 	
