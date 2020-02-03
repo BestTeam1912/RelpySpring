@@ -1,6 +1,7 @@
 package com.relpy.controllers;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.relpy.models.Comment;
@@ -22,10 +22,11 @@ import com.relpy.models.User;
 import com.relpy.services.CommentService;
 import com.relpy.services.CommunityService;
 import com.relpy.services.ThreadService;
+import com.relpy.services.UserService;
 
 @RestController
-@RequestMapping("/thread")
 @CrossOrigin("http://localhost:4200")
+@RequestMapping("/thread")
 public class ThreadController {
 	@Autowired
 	private ThreadService threadService;
@@ -36,6 +37,9 @@ public class ThreadController {
 	@Autowired
 	private CommunityService communityService;
 	
+	@Autowired
+	private UserService userService;
+	
 	@PostMapping(path="/add")
 	public Thread addThread(@RequestBody Thread thread) {
 		return threadService.addThread(thread);
@@ -43,6 +47,10 @@ public class ThreadController {
 	
 	@PostMapping("/add/comment/{threadId}")
 	public void addComment(@RequestBody Comment comment, @PathVariable long threadId) {
+		int commentLength = comment.getText().length();
+		User user = comment.getUser();
+		int currency = threadService.getUserCurrency(threadId, user.getId());
+		threadService.reduceUserCurrency(threadId, user.getId(), commentLength);
 		Thread thread = threadService.getThreadById(threadId);
 		thread.getCommentList().add(comment);
 		commentService.addComment(comment);
@@ -54,12 +62,20 @@ public class ThreadController {
 		Comment comment = commentService.getCommentById(commentId);
 		commentService.addComment(reply);
 		
+		int replyLength = reply.getText().length();
+		User user = reply.getUser();
+		threadService.reduceUserCurrency(threadId, user.getId(), replyLength);
+		
 		Thread thread = threadService.getThreadById(threadId);
 		thread.getCommentList().add(reply);
 		threadService.updateThread(thread);
 		
 		comment.getReplies().add(reply);
 		commentService.updateComment(comment);
+		
+		
+		User originalCommentUser = comment.getUser();
+		threadService.resetUserCurrency(threadId, originalCommentUser.getId());
 	}
 	
 	@GetMapping("/get")
@@ -83,7 +99,7 @@ public class ThreadController {
 		return threadService.getUserCurrency(threadId, userId);
 	}
 	
-	@PostMapping(path="/add/user/{threadId}")
+	@PostMapping("/add/user/{threadId}")
 	public void addUserToThread(@PathVariable long threadId, @RequestBody User user) {
 		threadService.addUserToThread(threadId, user);
 	}
