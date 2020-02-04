@@ -22,7 +22,7 @@ import com.relpy.services.ThreadService;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://relpyrevature.s3-website.us-east-2.amazonaws.com:4200")
 @RequestMapping("/community")
 public class CommunityController {
 	@Autowired

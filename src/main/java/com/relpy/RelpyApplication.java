@@ -1,6 +1,9 @@
 package com.relpy;
 
+<<<<<<< HEAD
 import org.springframework.beans.factory.annotation.Value;
+=======
+>>>>>>> b3
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -18,10 +21,16 @@ import com.relpy.services.UserService;
 @EnableAutoConfiguration
 @SpringBootApplication
 public class RelpyApplication {
+<<<<<<< HEAD
 
 	@Value("${defaultMoney}")
 	private int defaultMoney;
 
+=======
+	
+	
+	
+>>>>>>> b3
 	public static void main(String[] args) {
 		SpringApplication.run(RelpyApplication.class, args);
 	}

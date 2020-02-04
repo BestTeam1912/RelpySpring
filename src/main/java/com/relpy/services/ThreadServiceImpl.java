@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.relpy.daos.ThreadDAO;
+import com.relpy.daos.UserDAO;
 import com.relpy.exceptions.InsufficientFundsException;
 import com.relpy.models.Comment;
 import com.relpy.models.Thread;
@@ -19,6 +20,7 @@ public class ThreadServiceImpl implements ThreadService {
 
 	@Autowired
 	private ThreadDAO threadRepository;
+
 	
 	@Value("${defaultMoney}")
 	private int defaultMoney;
@@ -61,15 +63,19 @@ public class ThreadServiceImpl implements ThreadService {
 	public List<Thread> getAllThreads() {
 		return threadRepository.findAll();
 	}
+	
+	
 
 	@Override
-	public void addUserToThread(long threadId, User user) {
+	public Map<Long, Integer> addUserToThread(long threadId, User user) {
 		Thread thread = threadRepository.findById(threadId).get();
 		Map<Long, Integer> moneyMap = thread.getMoneyMap();
 		if(moneyMap.get(user.getId()) == null) {
 			moneyMap.put(user.getId(), defaultMoney);
 			updateThread(thread);
+			return moneyMap;
 		}
+		return null;
 	}
 
 	@Override
@@ -86,5 +92,13 @@ public class ThreadServiceImpl implements ThreadService {
 				updateThread(thread);
 			}
 		}
+	}
+
+	@Override
+	public void resetUserCurrency(long threadId, long userId) {
+		Thread thread = getThreadById(threadId);
+		Map<Long, Integer> moneyMap = thread.getMoneyMap();
+		moneyMap.put(userId, defaultMoney);
+		updateThread(thread);
 	}
 }

@@ -36,30 +36,11 @@ public class CommunityServicesTest {
     
     @MockBean
     private CommunityDAO dao;
-   
-    
-//	@Test
-//	public void getByTitleTest() {
-//	    String title = "firstCommunity";
-//	    Community found = service.getCommunityByTitle(title);
-//	    assertThat(found.getTitle()).isEqualTo(title);
-//	 }
-	
-//	@Test
-//	public void addAndGetTest() {
-//		Community com = new Community();
-//		com.setTitle("firstCommunity");
-//		com.setDescription("lorem ipsum description");
-//		com.setDateCreated(new Date());
-//		service.addCommunity(com);
-//		Community com2 = service.getCommunityByTitle(com.getTitle());
-//		assertEquals(com2, com);
-//	}
     
 	@Test
 	public void getCommunitiesTest() {
 		when(dao.findAll()).thenReturn(Stream
-				.of(new Community(1L, "community1", "c1des", null, new Date()), new Community(1L, "community2", "c2des", null, new Date())).collect(Collectors.toList()));
+				.of(new Community(1L, "community1", "c1des", null, new Date()), new Community(2L, "community2", "c2des", null, new Date())).collect(Collectors.toList()));
 		assertEquals(2, service.getAllCommunities().size());
 	}
 	
