@@ -15,7 +15,7 @@ import com.relpy.models.User;
 import com.relpy.services.UserService;
 
 @RestController
-@CrossOrigin(origins = "http://relpyrevature.s3-website.us-east-2.amazonaws.com:4200")
+@CrossOrigin(origins = "http://relpyrevature.s3-website.us-east-2.amazonaws.com")
 public class UserController {
 	
 	@Autowired
