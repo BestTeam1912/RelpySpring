@@ -18,28 +18,28 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Component
 public class CommunityServicesAdvice {
 
-//	Logger log = LoggerFactory.getLogger(CommunityServicesAdvice.class);
-//	
-//	@Pointcut(value="execution(* com.relpy.services.CommunityService.*(..))")
-//	public void allMethodsPointCut() {
-//	}
-//	
-//	@Before("allMethodsPointCut()")
-//	public void beforeAllMethods(JoinPoint jp) throws JsonProcessingException {
-//		ObjectMapper mapper = new ObjectMapper();
-//		String method = jp.getSignature().getName();
-//		String className = jp.getTarget().getClass().toString();
-//		Object[] arguments = jp.getArgs();
-//		log.info("Class: " + className + 
-//				"; Method: " + method + "()" + 
-//				"; Arguments : " + mapper.writeValueAsString(arguments));
-//	}
-//	
-//	@AfterThrowing(pointcut = "execution(* com.relpy.services.CommunityService.*(..))", throwing = "e")
-//	public void throwingAllMethods(JoinPoint jp, Throwable e) throws Throwable {
-//		System.out.println("Method Signature: "  + jp.getSignature());  
-//		System.out.println("Exception: "+e);  
-//	}
+	Logger log = LoggerFactory.getLogger(CommunityServicesAdvice.class);
+	
+	@Pointcut(value="execution(* com.relpy.services.CommunityService.*(..))")
+	public void allMethodsPointCut() {
+	}
+	
+	@Before("allMethodsPointCut()")
+	public void beforeAllMethods(JoinPoint jp) throws JsonProcessingException {
+		ObjectMapper mapper = new ObjectMapper();
+		String method = jp.getSignature().getName();
+		String className = jp.getTarget().getClass().toString();
+		Object[] arguments = jp.getArgs();
+		log.info("Class: " + className + 
+				"; Method: " + method + "()" + 
+				"; Arguments : " + mapper.writeValueAsString(arguments));
+	}
+	
+	@AfterThrowing(pointcut = "execution(* com.relpy.services.CommunityService.*(..))", throwing = "e")
+	public void throwingAllMethods(JoinPoint jp, Throwable e) throws Throwable {
+		System.out.println("Method Signature: "  + jp.getSignature());  
+		System.out.println("Exception: "+e);  
+	}
 
 
 }
