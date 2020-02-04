@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.relpy.models.Comment;
 import com.relpy.services.CommentService;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://relpyrevature.s3-website.us-east-2.amazonaws.com:4200")
 @RestController
 @RequestMapping("/comment")
 public class CommentController {
